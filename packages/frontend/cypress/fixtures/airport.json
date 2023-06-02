@@ -1,0 +1,42 @@
+{
+  "airports": [
+    {
+      "icao": "00AA",
+      "name": "Aero B Ranch Airport",
+      "location": { "latitude": 38.704022, "longitude": -101.473911 }
+    },
+    { "icao": "00AK", "name": "Lowell Field", "location": { "latitude": 59.94919968, "longitude": -151.695999146 } },
+    {
+      "icao": "00AL",
+      "name": "Epps Airpark",
+      "location": { "latitude": 34.86479949951172, "longitude": -86.77030181884766 }
+    },
+    {
+      "icao": "00AR",
+      "name": "Newport Hospital & Clinic Heliport",
+      "location": { "latitude": 35.6087, "longitude": -91.254898 }
+    },
+    { "icao": "00AS", "name": "Fulton Airport", "location": { "latitude": 34.9428028, "longitude": -97.8180194 } },
+    {
+      "icao": "00AZ",
+      "name": "Cordes Airport",
+      "location": { "latitude": 34.305599212646484, "longitude": -112.16500091552734 }
+    },
+    {
+      "icao": "00CA",
+      "name": "Goldstone /Gts/ Airport",
+      "location": { "latitude": 35.350498199499995, "longitude": -116.888000488 }
+    },
+    {
+      "icao": "00CL",
+      "name": "Williams Ag Airport",
+      "location": { "latitude": 39.427188, "longitude": -121.763427 }
+    },
+    {
+      "icao": "00CN",
+      "name": "Kitchen Creek Helibase Heliport",
+      "location": { "latitude": 32.7273736, "longitude": -116.4597417 }
+    },
+    { "icao": "00CO", "name": "Cass Field", "location": { "latitude": 40.622202, "longitude": -104.344002 } }
+  ]
+}

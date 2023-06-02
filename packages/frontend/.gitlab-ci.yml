@@ -1,0 +1,22 @@
+stages:
+  - build
+  - analyze
+  - test
+
+variables:
+  FLIGHT_PATHS_FRONTEND_IMAGE: $CI_REGISTRY_IMAGE/flight-paths/frontend
+
+workflow:
+  # The pipeline is only executed for branches (e.g. feature branches) and merge requests.
+  # It is explicitly not executed for commits with a message starting with "wip".
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /^wip/i
+      when: never
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+include:
+  - local: .gitlab/stages/build.gitlab-ci.yml
+  - local: .gitlab/stages/analyze.gitlab-ci.yml
+  - local: .gitlab/stages/vitest.gitlab-ci.yml
+  - local: .gitlab/stages/cypress.gitlab-ci.yml

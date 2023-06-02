@@ -1,0 +1,18 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "check-coverage": true,
+  "all": true,
+  "reporter": ["cobertura", "html", "text"],
+  "report-dir": "coverage",
+  "branches": 95,
+  "lines": 95,
+  "functions": 95,
+  "statements": 95,
+  "exclude": [
+    "src/api/routes/openapi/routes.ts",
+    "coverage/**",
+    "src/test/*",
+    "**/{ava,babel,nyc}.config.{js,cjs,mjs}",
+    "**/.{eslint,mocha}rc.{js,cjs}"
+  ]
+}

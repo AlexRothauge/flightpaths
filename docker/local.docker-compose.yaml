@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  local_mongo:
+    image: mongo:6.0
+    hostname: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: flight
+      MONGO_INITDB_ROOT_PASSWORD: paths
+    volumes:
+      - type: volume
+        source: local_data
+        target: /data/db/
+  local_backend:
+    image: flight-paths-backend
+    depends_on:
+      - local_mongo
+    hostname: backend
+    volumes:
+      - type: volume
+        source: local_images
+        target: /var/flight-paths/images/
+      - type: bind
+        source: ../packages/backend/flightData/
+        target: /var/flight-paths/flightData/
+    environment:
+      DB_NAME: flight-paths
+      DB_USER: flight
+      DB_PW: paths
+      DB_HOST: mongo
+      DB_PORT: "27017"
+      IMAGE_LOCATION: /var/flight-paths/images/
+  local_frontend:
+    image: flight-paths-frontend
+    hostname: frontend
+  local_proxy:
+    image: flight-paths-proxy
+    depends_on:
+      - local_backend
+    ports:
+      - target: 8080
+        published: 80
+
+volumes:
+  local_data:
+  local_images:

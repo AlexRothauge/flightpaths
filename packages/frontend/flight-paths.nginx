@@ -1,0 +1,17 @@
+server {
+  listen 0.0.0.0:8080;
+  listen [::]:8080;
+
+  server_tokens off; ## Don't show the nginx version number, a security best practice
+
+  client_max_body_size 75M;
+
+  access_log /dev/stdout;
+  error_log /dev/stderr;
+
+  root /var/www/flight-paths/;
+
+  location / {
+    try_files $uri $uri/index.html /index.html;
+  }
+}

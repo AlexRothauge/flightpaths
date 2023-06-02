@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: flight
+      MONGO_INITDB_ROOT_PASSWORD: paths
+    volumes:
+      - type: volume
+        source: data
+        target: /data/db/
+  backend:
+    image: registry.code.fbi.h-da.de/mpse-ws22-23-renz/flight-paths/flight-paths/backend:main
+    depends_on:
+      - mongo
+    volumes:
+      - type: volume
+        source: images
+        target: /var/flight-paths/images/
+    environment:
+      DB_NAME: flight-paths
+      DB_USER: flight
+      DB_PW: paths
+      DB_HOST: mongo
+      DB_PORT: "27017"
+      IMAGE_LOCATION: /var/flight-paths/images/
+  frontend:
+    image: registry.code.fbi.h-da.de/mpse-ws22-23-renz/flight-paths/flight-paths/frontend:main
+  proxy:
+    image: registry.code.fbi.h-da.de/mpse-ws22-23-renz/flight-paths/flight-paths/proxy:main
+    depends_on:
+      - backend
+    ports:
+      - target: 8080
+        published: 80
+
+volumes:
+  data:
+  images:

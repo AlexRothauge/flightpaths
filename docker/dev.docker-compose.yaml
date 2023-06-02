@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: flight
+      MONGO_INITDB_ROOT_PASSWORD: paths
+    ports:
+      - target: 27017
+        published: 27017
+    volumes:
+      - type: volume
+        source: dev_data
+        target: /data/db/
+
+volumes:
+  dev_data:
